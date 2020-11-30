@@ -1,33 +1,29 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <font face="Roboto, Source Code pro, Monospace, Arial, Calibri">
-<style>
-body {
-    /*background-color: linen;*/
-    font-size: 12;
-}
-
-h1 {
-    color: maroon;
-    margin-left: 40px;
-}
-p.sourcecode {
-    background-color: #e9cbaf;
-    text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 0;
-    /*font-family: Roboto, Source Code pro, Monospace, Arial, Calibri;*/
-    font-size: 14;
-    /*border: 1px solid #faf2eb;*/
-    padding-left: 5px;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<h4>1. Parsovanie stringov:</h4>
-    Vypíše reťazec za znakom '=', výstup bude 'retazec2':
-<p class="sourcecode">echo retazec1=retazec2 | awk -F'=' '{print $2}'</p>
+
+<div class="row">
+  <div class="left" style="background-color:#bbb;">
+    <h2>Menu</h2>
+    <input type="text" id="mySearch" placeholder="Search.." title="Type in a category"> <!-- onkeyup="myFunction()"-->
+    <ul id="myMenu">
+      <li id="liBash" onmouseover="myFunction('Bash')" onclick="itemMenuClicked('liBash')" >Bash</li> <!--<a href="index.html">Bash</a> -->
+      <li id="liAWK" onmouseover="myFunction('AWK')" onclick="itemMenuClicked('liAWK')">AWK</li>
+      <li id="liPackageManager" onmouseover="myFunction('PM')" onclick="itemMenuClicked('liPackageManager')">Package manager</li>
+      <li id="liFileSystem" onmouseover="myFunction('FS')" onclick="itemMenuClicked('liFileSystem')">File system</li>
+      <li id="liTCPIP" onmouseover="myFunction('TCPIP')" onclick="itemMenuClicked('liTCPIP')">TCP/IP</li>
+    </ul>
+  </div>
+
+  <div class="right" style="background-color:#ddd;">
+    <p id="definition">Start to type for a specific category inside the search bar to "filter" the search options.</p>
+  </div>
+</div>
+
 </body>
-<html>
+</html>

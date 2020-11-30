@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <font face="Roboto-Regular,Source Code pro, Monospace, Arial, Calibri">
+<style>
+body {
+    background-color: linen;
+    font-size: 12;
+    font-family : "Roboto Mono"
+}
+
+    h1 {
+        color: maroon;
+        margin-left: 40px;
+    }
+    h4 {
+        color: maroon;
+        margin-bottom: 5px;
+    }
+    span.comment {
+        color:gray;
+        font-style: italic;
+    }
+    p.sourcecode {
+        background-color: #e9cbaf;
+        text-align: left;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 2px;
+        margin-bottom: 5px;
+        font-family: "Roboto Mono", Source Code pro, Monospace, Arial, Calibri;
+        /*font-size: 10;*/
+        /*border: 1px solid #faf2eb;*/
+        padding-left: 5px;
+    }
+</style>
+</head>
+<body>
+    <h4>1. Základy</h4>
+    Podmienky(-lt, -ge, ...), manuál:
+    <p class="sourcecode">man test</p>
+    <h4>2. Podmienky</h4>
+    Otestuje či je premenná rovná 1:
+    <p class="sourcecode"><span class="comment">#!/bin/bash</span><br>
+    A=1 <span class="comment">#deklarácia premennej</span><br>
+    if [ $A -eq 1 ]; then echo OK; else echo not OK; fi
+    </p>
+    
+    <h4>3. Funkcie</h4>
+    Deklarácia a volanie funkcie:
+    <p class="sourcecode">status() { <span class="comment">#deklarácia funkcie</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;echo Function call<br>
+    }<br>
+    <br>
+    status <span class="comment">#volanie funkcie</span><br>
+    </p>
+    
+    <h4>4. Cykly</h4>
+    <p class="sourcecode">
+    for i in {1..5}<br>
+    do<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;echo "Welcome $i times"<br>
+    done
+    </p>
+</body>
+<html>
+
