@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="js/scripts.js"></script>
     <link rel="stylesheet" href="css/styles.css">
@@ -10,9 +11,9 @@
 <div class="row">
   <div class="left" style="background-color:#bbb;">
     <h2>Menu</h2>
-    <input type="text" id="mySearch" placeholder="Search.." title="Type in a category"> <!-- onkeyup="myFunction()"-->
+    <input type="text" id="mySearch" placeholder="Search query..." title="Type in a category" onkeyup="search()">
     <ul id="myMenu">
-      <li id="liBash" onmouseover="myFunction('Bash')" onclick="itemMenuClicked('liBash')" >Bash</li> <!--<a href="index.html">Bash</a> -->
+      <li id="liBash" onmouseover="myFunction('Bash')" onclick="itemMenuClicked('liBash')" >Bash</li>
       <li id="liAWK" onmouseover="myFunction('AWK')" onclick="itemMenuClicked('liAWK')">AWK</li>
       <li id="liPackageManager" onmouseover="myFunction('PM')" onclick="itemMenuClicked('liPackageManager')">Package manager</li>
       <li id="liFileSystem" onmouseover="myFunction('FS')" onclick="itemMenuClicked('liFileSystem')">File system</li>

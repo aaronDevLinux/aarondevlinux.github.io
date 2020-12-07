@@ -29,7 +29,9 @@ let defs = [
             [ 'FS', "<p>Kto lockuje/drží súbor:</p>" +
                     "<p class=\"sourcecode\">sudo lsof &lt;subor&gt;</p>" +
                     "<p>Mount remote file system:</p>" +
-                    "<p class=\"sourcecode\">sudo mount -t cifs -o user=&lt;user&gt; //remote_path /mnt/mount_name/</p>"
+                    "<p class=\"sourcecode\">sudo mount -t cifs -o user=&lt;user&gt; //remote_path /mnt/mount_name/</p>" +
+                    "<p>Počita výskyt stringu v súbore:</p>" +
+                    "<p class=\"sourcecode\">grep -o \"2017008\" content.xml | wc -w</p>"
             ], //end: File system
             [ 'TCPIP', "<p>Otvorené socket-y pre nejaký proces:</p>" +
               "<p class=\"sourcecode\">sudo netstat -tnpa | grep firefox*</p>" +
@@ -40,8 +42,29 @@ let defs = [
             ]  
            ];  //end: TCP/IP
            
-let selectedElement = null;
+function search() {
+    //search query and set paragraphs found
+    var input = document.getElementById("mySearch");
+    var filter = input.value.toUpperCase();
+    if( filter.length < 3 ) {
+        return;
+    }
 
+    document.getElementById("definition").innerHTML = "";
+    for (var defsCounter = 0; defsCounter < defs.length; defsCounter++) {
+        var tmp = document.createElement('div');
+        tmp.innerHTML = defs[defsCounter][1];
+
+        var allParagraphs = tmp.getElementsByTagName("p");
+        for (var i = 0; i < allParagraphs.length; i++) {
+            if (allParagraphs[i].textContent.toUpperCase().indexOf(filter) > -1) {
+                document.getElementById("definition").innerHTML += allParagraphs[i].outerHTML;
+            }
+        }
+    }
+}
+
+let selectedElement = null;
 function myFunction(fParam) {
     
   if( selectedElement != null ) {
@@ -80,16 +103,6 @@ function myFunction(fParam) {
   if( fParam == "TCPIP" ) {
     document.getElementById("definition").innerHTML = defs[3][1];
   }
-
-  // Loop through all list items, and hide those who don't match the search query
-  /*for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }*/
 }
 
 function itemMenuClicked(elemId)
