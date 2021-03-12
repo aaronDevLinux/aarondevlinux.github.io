@@ -24,13 +24,15 @@ let defs = [
             [ 'PM', "<p>Pohľadá nainštalovanú aplikáciu/knižnicu:</p>" +
                     "<p class=\"sourcecode\">ldconfig -p | grep python</p> " +
                     "<p class=\"sourcecode\">apt-file search libQtSvg.so.4</p> " +
-                    "<p class=\"sourcecode\">dpkg -S libQtSvg.so.4</p>"
+                    "<p class=\"sourcecode\">dpkg -S libQtSvg.so.4</p>" +
+                    "<p>Zistí veľkosť package(nemusí byt nainštalovaný) z repozitára:</p>" +
+                    "<p class=\"sourcecode\">apt show firefox | grep Size</p>"
             ], //end: PM
             [ 'FS', "<p>Kto lockuje/drží súbor:</p>" +
                     "<p class=\"sourcecode\">sudo lsof &lt;subor&gt;</p>" +
                     "<p>Mount remote file system:</p>" +
                     "<p class=\"sourcecode\">sudo mount -t cifs -o user=&lt;user&gt; //remote_path /mnt/mount_name/</p>" +
-                    "<p>Počita výskyt stringu v súbore:</p>" +
+                    "<p>Počíta výskyt stringu v súbore:</p>" +
                     "<p class=\"sourcecode\">grep -o \"2017008\" content.xml | wc -w</p>"
             ], //end: File system
             [ 'TCPIP', "<p>Otvorené socket-y pre nejaký proces:</p>" +
@@ -39,8 +41,30 @@ let defs = [
               "<p class=\"sourcecode\">sudo tcpdump -i any port 443</p>" +
               "<p>Počúva na localhost, porte 443. Všetko čo príde vypíše do súboru '/tmp/test.log':" +
               "<p class=\"sourcecode\">sudo socat -u TCP4-LISTEN:443,reuseaddr,fork OPEN:/tmp/test.log,creat,append</p>" //https://www.redhat.com/sysadmin/getting-started-socat
-            ]  
-           ];  //end: TCP/IP
+            ], //end: TCP/IP
+            [ 'Git',
+              "<p>Nájde commit podľa zadaného stringu:</p>" +
+              "<p class=\"sourcecode\">git log -S hľadaný_string</p>" +
+              "<p class=\"sourcecode\">git log --pretty=format:\"%h - %an, %ar : %s\" | grep hľadaný_string</p>" +
+              "<p>Nájde commity po nejakom dátume:</p>" +
+              "<p class=\"sourcecode\">git log --after=\"2020-04-01 00:00\"</p>" +
+              "<p>Definícia aliasu:</p>" +
+              "<p class=\"sourcecode\">git config --global alias.st status</p>" +
+              "<p>Revert local commit - zmaže lokálny commit:</p>" +
+              "<p class=\"sourcecode\">git reset HEAD~1</p>"
+            ], //end: Git
+            [ 'Docker',
+              "<p>Základná inštalácia a run(príklad pre nginx):</p>" +
+              "<p class=\"sourcecode\">sudo snap install docker</p>" +
+              "<p class=\"sourcecode\">sudo docker pull nginx</p>" +
+              "<p class=\"sourcecode\">sudo docker run --name ngx-docker -p 1234:80 -d nginx<span class=\"comment\"> #vytvorenie kontajnera pre nginx, bude bežať na localhost:1234</span></p>" +
+              "<p class=\"sourcecode\">sudo docker stop ngx-docker<span class=\"comment\"> # znovu nastartovanie: sudo docker start ngx-docker</span></p>" +
+              "<p>Zoznam bežiacich kontajnerov:</p>"+
+              "<p class=\"sourcecode\">sudo docker ps</p>"
+            ] //end: Docker
+            //Regexp:
+            //Najde stringy "<Key>aip" za ktorym nenasleduje znak '.': <Key>aip[^\.]
+           ];
            
 function search() {
     //search query and set paragraphs found
@@ -91,17 +115,28 @@ function myFunction(fParam) {
 
     return;
   }
-  
+
   if( fParam == "PM" ) {
     document.getElementById("definition").innerHTML = defs[1][1];
   }
-  
+
   if( fParam == "FS" ) {
     document.getElementById("definition").innerHTML = defs[2][1];
   }
-  
+
   if( fParam == "TCPIP" ) {
     document.getElementById("definition").innerHTML = defs[3][1];
+    return;
+  }
+
+  if( fParam == "Git" ) {
+    document.getElementById("definition").innerHTML = defs[4][1];
+    return;
+  }
+
+  if( fParam == "Docker" ) {
+    document.getElementById("definition").innerHTML = defs[5][1];
+    return;
   }
 }
 
@@ -113,6 +148,10 @@ function itemMenuClicked(elemId)
         return;
     }
     
+    if( selectedElement != null ) {
+        selectedElement.style = "background-color:#bbb";
+    }
+
     selectedElement = document.getElementById(elemId);
     selectedElement.style = "background-color:#faf2eb";
 }

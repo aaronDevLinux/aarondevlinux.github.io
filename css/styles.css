@@ -12,6 +12,8 @@ body, p, div {
   display: flex;
 }
 
+li { cursor: pointer; }
+
 /* Left column (menu) */
 .left {
   flex: 35%;
