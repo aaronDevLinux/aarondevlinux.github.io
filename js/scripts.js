@@ -61,7 +61,11 @@ let defs = [
               "<p class=\"sourcecode\">sudo docker stop ngx-docker<span class=\"comment\"> # znovu nastartovanie: sudo docker start ngx-docker</span></p>" +
               "<p>Zoznam bežiacich kontajnerov:</p>"+
               "<p class=\"sourcecode\">sudo docker ps</p>"
-            ] //end: Docker
+            ], //end: Docker
+            [ 'Total Commander',
+              "<p>Hľadanie v súboroch:</p>" +
+              "- nájde všetky súbory typu 'data'. Preskočí '.git' a 'windows' folder <p class=\"sourcecode\">*.data | .git\\;windows\\</p>"
+            ] //end: Total Commander
             //Regexp:
             //Najde stringy "<Key>aip" za ktorym nenasleduje znak '.': <Key>aip[^\.]
            ];
@@ -136,6 +140,11 @@ function myFunction(fParam) {
 
   if( fParam == "Docker" ) {
     document.getElementById("definition").innerHTML = defs[5][1];
+    return;
+  }
+
+  if( fParam == "Total Commander" ) {
+    document.getElementById("definition").innerHTML = defs[6][1];
     return;
   }
 }
